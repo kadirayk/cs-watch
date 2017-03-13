@@ -8,4 +8,4 @@ class PageView(models.Model):
 
 class Developer(models.Model):
     name = models.CharField(max_length=64)
-    isNobetci = models.BooleanField()
+    isNobetci = models.BooleanField(default=False)
