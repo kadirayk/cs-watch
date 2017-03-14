@@ -1,10 +1,18 @@
 <!doctype html>
 <html lang="en">
+<head>
+<style>
+h1 {text-align:center;}
+p {text-align:center;}
+</style>
+</head>
 <body>
 {% for dev in developers %}
-    {% if dev.isNobetci %}
-        <h1>Nöbetci: {{ dev.name }}</h1>
-    {% endif %}
+{% if dev.isNobetci %}
+    <h1> Nobetci: {{ dev.name }}</h1>
+{% else %}
+    <p>{{ dev.date | date:"d.m.y l" }} : {{ dev.name }} </p>
+{% endif %}
 {% endfor %}
 </body>
 </html>
