@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="en">
 <body>
-  <span>Hawllo wrelds</span>
+{% for dev in developers %}
+    {% if dev.isNobetci %}
+        <h1>Nöbetci: {{ dev.name }}</h1>
+    {% endif %}
+{% endfor %}
 </body>
 </html>
