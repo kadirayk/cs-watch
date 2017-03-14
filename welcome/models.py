@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 # Create your models here.
 
@@ -8,4 +9,5 @@ class PageView(models.Model):
 
 class Developer(models.Model):
     name = models.CharField(max_length=64)
+    date = models.DateField(default=date.today)
     isNobetci = models.BooleanField(default=False)
