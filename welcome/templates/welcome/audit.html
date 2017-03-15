@@ -2,7 +2,7 @@
 <html lang="en">
 <body>
 {% for a in audit %}
-    <span>{{ a.ip }} | {{ a.count }} </br> </span>
+    <span>{{ a.ip }} | {{ a.count }} | {{ a.lastvisit }} </br> </span>
 {% endfor %}
 </body>
 </html>
