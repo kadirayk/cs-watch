@@ -18,6 +18,7 @@ def index(request):
     ipstr = get_ip(request)
     if ipstr is not None:
         audit, created = Audit.objects.get_or_create(ip=ipstr)
+        audit.lastvisit = datetime.datetime.now()
         if not created:
             audit.count += 1
             audit.save()
@@ -41,11 +42,6 @@ class DevDate(object):
     def __init__(self, developer, date):
         self.developer = developer
         self.date = date
-
-def make_student(name, age, major):
-    student = Student(name, age, major)
-    return student
-
 
 def addDeveloper(request):
     mDate = datetime.datetime.strptime(request.GET["date"], '%d%m%y').date()
