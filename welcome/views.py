@@ -6,19 +6,31 @@ from django.http import HttpResponse
 from . import database
 from .models import PageView
 from .models import Developer
+from .models import Audit
 import datetime
-from datetime import timedelta
+from ipware.ip import get_ip
 
 
 # Create your views here.
 
 def index(request):
     developers = Developer.objects.all().order_by('date')
+    ipstr = get_ip(request)
+    if ipstr is not None:
+        audit, created = Audit.objects.get_or_create(ip=ipstr)
+        if not created:
+            audit.count += 1
+            audit.save()
     for dev in developers:
         if dev.date == datetime.datetime.today().date():
             dev.isNobetci=True
     return render(request, 'welcome/index.html', {
         'developers': developers
+    })
+
+def audit(request):
+    return render(request, 'welcome/audit.html', {
+        'audit': Audit.objects.all().order_by('count')
     })
 
 class DevDate(object):
