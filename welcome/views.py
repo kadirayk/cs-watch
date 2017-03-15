@@ -37,7 +37,7 @@ def audit(request):
 
 def sendMail(request):
     sender =  os.environ.get('EMAIL_SENDER')
-    send_mail('kk-test', 'test body of the message', sender, request.GET['email'])
+    send_mail('kk-test', 'test body of the message', sender, request.GET["to"])
     return render(request, 'welcome/audit.html', {
         'audit': Audit.objects.all().order_by('count')
     })
