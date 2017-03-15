@@ -9,6 +9,7 @@ from .models import Developer
 from .models import Audit
 import datetime
 from ipware.ip import get_ip
+from django.core.mail import send_mail
 
 
 # Create your views here.
@@ -30,6 +31,12 @@ def index(request):
     })
 
 def audit(request):
+    return render(request, 'welcome/audit.html', {
+        'audit': Audit.objects.all().order_by('count')
+    })
+
+def sendMail(request):
+    send_mail('kk-test', 'test body of the message', 'testnobetci@thy.com', ['kkarakaya@thy.com'])
     return render(request, 'welcome/audit.html', {
         'audit': Audit.objects.all().order_by('count')
     })
