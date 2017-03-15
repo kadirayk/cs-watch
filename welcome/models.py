@@ -11,3 +11,7 @@ class Developer(models.Model):
     name = models.CharField(max_length=64)
     date = models.DateField(default=date.today)
     isNobetci = models.BooleanField(default=False)
+
+class Audit(models.Model):
+    ip = models.CharField(max_length=20)
+    count = models.IntegerField(default=1)
