@@ -15,3 +15,4 @@ class Developer(models.Model):
 class Audit(models.Model):
     ip = models.CharField(max_length=20)
     count = models.IntegerField(default=1)
+    lastvisit = models.DateTimeField(default=date.today)
