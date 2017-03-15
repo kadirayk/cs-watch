@@ -37,9 +37,11 @@ def audit(request):
 
 def sendMail(request):
     sender =  os.environ.get('EMAIL_SENDER')
-    send_mail('kk-test', 'test body of the message', sender, [request.GET["to"]])
-    return render(request, 'welcome/audit.html', {
-        'audit': Audit.objects.all().order_by('count')
+    branch = request.GET["branch"]
+    ortam = request.GET["ortam"]
+    body = 'merhaba nobetci, \n ' + branch + '\'dan ' + ortam + '\'a deployment yapabilir misin? \n teşekkürler.'
+    send_mail('nobetci: deployment talebi', body, sender, [request.GET["to"]])
+    return render(request, 'welcome/emailSent.html', {
     })
 
 class DevDate(object):
