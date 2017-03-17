@@ -13,8 +13,8 @@ class Developer(models.Model):
 
 class Meta(models.Model):
     email = models.EmailField(default="")
-    ipaddress = models.GenericIPAddressField(default="")
-    name = models.CharField(max_length=64, default="")
+    ipaddress = models.GenericIPAddressField()
+    name = models.CharField(max_length=64)
 
 class Audit(models.Model):
     ip = models.CharField(max_length=20)
