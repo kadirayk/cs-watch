@@ -14,11 +14,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='meta',
             name='ipaddress',
-            field=models.GenericIPAddressField(default=b'127.0.0.1'),
+            field=models.GenericIPAddressField(),
         ),
         migrations.AlterField(
             model_name='meta',
             name='name',
-            field=models.CharField(default=b'nobetci', max_length=64),
+            field=models.CharField(max_length=64),
         ),
     ]
