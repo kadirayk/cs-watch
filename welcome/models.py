@@ -10,7 +10,11 @@ class PageView(models.Model):
 class Developer(models.Model):
     name = models.CharField(max_length=64)
     date = models.DateField(default=date.today)
-    isNobetci = models.BooleanField(default=False)
+
+class Meta(models.Model):
+    email = models.EmailField(default="")
+    ipaddress = models.GenericIPAddressField(default="")
+    name = models.CharField(max_length=64, default="")
 
 class Audit(models.Model):
     ip = models.CharField(max_length=20)
