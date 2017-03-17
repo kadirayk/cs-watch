@@ -1,18 +1,79 @@
 <!doctype html>
 <html lang="en">
 <head>
-<style>
-h1 {text-align:center;}
-p {text-align:center;}
-</style>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        .deploy_form {
+            position: absolute;
+            top: 100px;
+            right: 100px;
+            border: 1px solid black;
+            border-radius: 25px;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
-{% for dev in developers %}
-{% if dev.isNobetci %}
-    <h1> Nobetci: {{ dev.name }}</h1>
-{% else %}
-    <p>{{ dev.date | date:"d.m.y l" }} : {{ dev.name }} </p>
-{% endif %}
-{% endfor %}
+<form action="/sendMail/" method="post">
+    <div class="devlist">
+        {% for dev in developers %}
+            {% if dev.isNobetci %}
+                <h1> Nobetci: {{ dev.name }}</h1>
+                <input type="hidden" name="nobetci" value="{{ dev.name }}">
+                <input type="hidden" name="sender" value="{{ ipstr }}">
+            {% else %}
+                <p>{{ dev.date | date:"d.m.y l" }} : {{ dev.name }} </p>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="deploy_form">
+        <h3>deployment talebi</h3>
+
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td valign="top">
+                    <label>branch: </label>
+                </td>
+                <td valign="top">
+                    <label>ortam: </label>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <select name="branch">
+                        <option value="1.8 live">1.8 live</option>
+                        <option value="1.8 trunk">1.8 trunk</option>
+                        <option value="1.6 live">1.6 live</option>
+                        <option value="1.6 trunk">1.6 trunk</option>
+                    </select>
+                </td>
+
+                <td>
+                    <input type="checkbox" name="ortam1" value="wstest01">wstest01<br>
+                    <input type="checkbox" name="ortam2" value="wsdev01">wsdev01<br>
+                    <input type="checkbox" name="ortam3" value="wskurumsaltest01">wskurumsaltest01<br>
+                    <input type="checkbox" name="ortam4" value="wskurumsaldev01">wskurumsaldev01<br>
+                    <input type="checkbox" name="ortam5" value="wstest">wstest<br>
+                    <input type="checkbox" name="ortam6" value="wskurumsaltest">wskurumsaltest<br>
+                    <input type="checkbox" name="ortam7" value="wsdev">wsdev<br>
+                    <input type="checkbox" name="ortam8" value="wspretest">wspretest<br>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td align="right"><input type="submit" value="Gönder"></td>
+            </tr>
+        </table>
+    </div>
+</form>
 </body>
 </html>
