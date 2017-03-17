@@ -87,7 +87,7 @@ def sendMail(request):
     if nobetciMail is " ":
         nobetciMail = teamEmail
     # send_mail('nobetci: deployment talebi', body, senderMail, nobetciMail)
-    email = EmailMessage(subject='nobetci: deployment talebi', body=body, from_email=senderMail, to=nobetciMail,cc=teamEmail)
+    email = EmailMessage(subject='nobetci: deployment talebi', body=body, from_email=senderMail, to=[nobetciMail],cc=teamEmail)
     email.send()
     return render(request, 'welcome/emailSent.html', {
         'body': body
