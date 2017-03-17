@@ -15,8 +15,8 @@ class Migration(migrations.Migration):
             name='Meta',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('email', models.EmailField(default=b'', max_length=254)),
-                ('ipaddress', models.IPAddressField(default=b'')),
+                ('email', models.EmailField(max_length=254)),
+                ('ipaddress', models.IPAddressField()),
             ],
         ),
         migrations.RemoveField(
