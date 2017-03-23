@@ -43,6 +43,7 @@ def audit(request):
 def sendMail(request):
     senderDefaultEmail = os.environ.get('EMAIL_SENDER')
     teamEmail = os.environ.get('TEAM_EMAIL')
+    analystEmail = os.environ.get('ANALYST_EMAIL')
     branch = request.POST["branch"]
     ortam = ""
     if 'ortam1' in request.POST:
@@ -87,7 +88,7 @@ def sendMail(request):
     if nobetciMail is " ":
         nobetciMail = teamEmail
     # send_mail('nobetci: deployment talebi', body, senderMail, nobetciMail)
-    email = EmailMessage(subject='nobetci: deployment talebi', body=body, from_email=senderMail, to=[nobetciMail],cc=[teamEmail])
+    email = EmailMessage(subject='nobetci: deployment talebi', body=body, from_email=senderMail, to=[nobetciMail],cc=[teamEmail,analystEmail])
     email.send()
     return render(request, 'welcome/emailSent.html', {
         'body': body
