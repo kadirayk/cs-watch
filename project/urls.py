@@ -1,7 +1,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from welcome.views import index, health, addDeveloper, deleteDeveloper, nobetcify, audit, sendMail, addMeta, deleteMeta
+from welcome.views import index, health, addDeveloper, deleteDeveloper, nobetcify, audit, sendMail, addMeta, deleteMeta, prank
 
 urlpatterns = [
     # Examples:
@@ -17,5 +17,6 @@ urlpatterns = [
     url(r'^addMeta$', addMeta),
     url(r'^deleteMeta$', deleteMeta),
     url(r'^health$', health),
+    url(r'^prank$', prank),
     url(r'^admin/', include(admin.site.urls)),
 ]
