@@ -71,6 +71,7 @@ def sendMail(request):
     nobetciName = request.POST['nobetci']
     senderIp = request.POST['sender']
 
+    nobetciMail = " "
     try:
         nobetci = Meta.objects.all().filter(name__exact=nobetciName).get()
     except Meta.DoesNotExist:
@@ -83,7 +84,7 @@ def sendMail(request):
         sender = None
     body = 'merhaba ' + nobetciName + ', \n\n ' + branch + '\'dan ' + ortam + '\'a deployment yapabilir misin? \n\n tesekkurler.\n'
     senderMail = " "
-    nobetciMail = " "
+
     if sender is not None:
         body += sender.name
         senderMail = sender.email
