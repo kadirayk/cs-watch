@@ -61,7 +61,11 @@ def sendMail(request):
     if 'ortam7' in request.POST:
         ortam += request.POST['ortam7'] + ", "
     if 'ortam8' in request.POST:
-        ortam += request.POST['ortam8']
+        ortam += request.POST['ortam8'] + ", "
+    if 'ortam9' in request.POST:
+        ortam += request.POST['ortam9'] + ", "
+    if 'ortam10' in request.POST:
+        ortam += request.POST['ortam10']
     if ortam.endswith(", "):
         ortam = ortam[:-2]
     nobetciName = request.POST['nobetci']
